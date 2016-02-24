@@ -9,7 +9,7 @@ It was inspired by Airbnb's styleguide.
     1. [Indentation](#indentation)
     1. [Inline](#inline)
     1. [Newlines](#newlines)
-    1. [RSpec Let](#rspec-let)
+    1. [Blocks](#blocks)
   1. [Line Length](#line-length)
   1. [Commenting](#commenting)
     1. [File/class-level comments](#fileclass-level-comments)
@@ -171,26 +171,43 @@ It was inspired by Airbnb's styleguide.
     robot.add_trait(:human_like_intelligence)
     ```
 
-### RSpec Let
-* <a name="rspec-let"></a>Add new lines in `let` definitions
+### Blocks
+* <a name="rspec-let"></a>Add new lines in any block definitions
     if they are too long
 
     ```ruby
     # bad
+    scope :where_name_like, lambda {|name| any_of({ :name => /#{Regexp.quote(name)}/i },  { :short_name => /#{Regexp.quote(name)}/i } )}
+
+    # bad
+    scope :where_name_like, lambda { |name|
+      any_of({ :name => /#{Regexp.quote(name)}/i },
+             { :short_name => /#{Regexp.quote(name)}/i } )
+    }
+
+    # bad
     let(:brand) { create(:brand, :name => "Hello", :subscription => create(:ready_to_start_subscription, :days_paid => 10), :clients => [create(:client), create(:client)]) }
 
-     # good
-     let(:brand) do
-       create(
-         :brand,
-         :name => "Hello",
-         :subscription => subscription,
-         :clients => [client_1, client_2]
-       )
-     end
-     let(:subscription) { create(:ready_to_start_subscription, :days_paid => 20) }
-     let(:client_1) { create(:client) }
-     let(:client21) { create(:client) }
+    # good
+    scope :where_name_like, -> do |name|
+      any_of(
+        { :name => /#{Regexp.quote(name)}/i },
+        { :short_name => /#{Regexp.quote(name)}/i }
+      )
+    end
+
+    # good
+    let(:brand) do
+      create(
+        :brand,
+        :name => "Hello",
+        :subscription => subscription,
+        :clients => [client_1, client_2]
+      )
+    end
+    let(:subscription) { create(:ready_to_start_subscription, :days_paid => 20) }
+    let(:client_1) { create(:client) }
+    let(:client21) { create(:client) }
     ```
 
 ## Line Length
