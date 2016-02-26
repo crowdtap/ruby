@@ -539,7 +539,7 @@ In either case:
     # good
     names.each do |name|
       puts name
-      do_something_with name
+      do_something_with(name)
     end
 
     # bad
@@ -882,10 +882,10 @@ In either case:
 
     ```ruby
     hash = {
-      :protocol => 'https',
-      :only_path => false,
-      :controller => :users,
       :action => :set_password,
+      :controller => :users,
+      :only_path => false,
+      :protocol => 'https',
       :redirect => @redirect_url,
       :secret => @secret,
     }
@@ -905,6 +905,29 @@ In either case:
       "plane",
       "zoo",
     ]
+    ```
+
+* <a name="lists-alphabetization"></a>When listing out a bunch of items whose order
+    doesn't necessarily matter, list them in alphabetical order.
+    <sup>[[link](#lists-alphabetization)]</sup>
+
+    ```ruby
+    # good
+    hash = {
+      :action => :set_password,
+      :controller => :users,
+      :only_path => false,
+      :protocol => 'https',
+      :redirect => @redirect_url,
+      :secret => @secret,
+    }
+
+    # good
+    field :action
+    field :brand_id
+    field :first_name
+    field :last_name
+    field :title
     ```
 
 ## Strings
