@@ -1127,6 +1127,23 @@ In either case:
   <sup>[[link](#level-of-abstraction)]</sup>
 * <a name="no-private-method-specs"></a>Do not directly test private methods.
   <sup>[[link](#no-private-method-specs)]</sup>
+* <a name="avoid-stubbing-db"></a>Do not stub database interactions. They are
+  not tested elsewhere.<sup>[[link](#avoid-stubbing-db)]</sup>
+  ```ruby
+  #bad
+  it "sets the admin flag to true" do
+    user.make_admin!
+
+    expect(user).to have_received(:update_attributes!).with(:admin => true)
+  end
+
+  #good
+  it "sets the admin flag to true" do
+    user.make_admin!
+
+    expect(user.reload.admin).to eq(true)
+  end
+  ```
 
 ####Rspec
 
