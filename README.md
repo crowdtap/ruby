@@ -1089,44 +1089,6 @@ In either case:
     end
     ```
 
-### Scopes
-* <a name="scope-lambda"></a>When defining ActiveRecord model scopes, wrap the
-    relation in a `lambda`.  A naked relation forces a database connection to be
-    established at class load time (instance startup).
-    <sup>[[link](#scope-lambda)]</sup>
-
-    ```ruby
-    # bad
-    scope :foo, where(:bar => 1)
-
-    # good
-    scope :foo, -> { where(:bar => 1) }
-    ```
-
-### Dates
-* <a name="dates"></a>When trying to set the current date or time, make use
-    .current instead of .today. Date.today doesn't account for timezones and hence
-    can cause issues.
-    <sup>[[link](#dates)]</sup>
-
-    ```ruby
-    # bad
-    Timecop.freeze(Date.today) do
-      ...
-    end
-
-    #bad
-    now = Time.now
-
-    # good
-    Timecop.freeze(Date.current) do
-      ...
-    end
-
-    # good
-    now = Time.current
-    ```
-
 ### Separation of Concerns
 
 * <a name="business-logic"></a>Business logic should be in models and
@@ -1174,6 +1136,44 @@ In either case:
 * <a name="have-received"></a>Prefer `expect(foo).to have_received(:message)` over
   (i.e. stub `find` to return a specific instance or a stub).
   <sup>[[link](#have-received)]</sup>
+
+### Scopes
+* <a name="scope-lambda"></a>When defining ActiveRecord model scopes, wrap the
+    relation in a `lambda`.  A naked relation forces a database connection to be
+    established at class load time (instance startup).
+    <sup>[[link](#scope-lambda)]</sup>
+
+    ```ruby
+    # bad
+    scope :foo, where(:bar => 1)
+
+    # good
+    scope :foo, -> { where(:bar => 1) }
+    ```
+
+### Dates
+* <a name="dates"></a>When trying to set the current date or time, make use
+    .current instead of .today. Date.today doesn't account for timezones and hence
+    can cause issues.
+    <sup>[[link](#dates)]</sup>
+
+    ```ruby
+    # bad
+    Timecop.freeze(Date.today) do
+      ...
+    end
+
+    #bad
+    now = Time.now
+
+    # good
+    Timecop.freeze(Date.current) do
+      ...
+    end
+
+    # good
+    now = Time.current
+    ```
 
 ## Be Consistent
 
