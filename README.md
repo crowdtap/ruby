@@ -32,12 +32,12 @@ It was inspired by Airbnb's styleguide.
   1. [Regular Expressions](#regular-expressions)
   1. [Percent Literals](#percent-literals)
   1. [Rails](#rails)
-    1. [Scopes](#scopes)
-    1. [Dates](#dates)
     1. [Separation of Concerns](#separation-of-concerns)
     1. [Persistence](#persistence)
     1. [Testing Strategy](#testing-strategy)
       1. [Rspec](#rspec)
+    1. [Scopes](#scopes)
+    1. [Dates](#dates)
   1. [Be Consistent](#be-consistent)
 
 ## Whitespace
