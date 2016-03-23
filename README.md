@@ -1163,7 +1163,8 @@ In either case:
   <sup>[[link](#no-any-instance)]</sup>
 
 * <a name="have-received"></a>Prefer `expect(foo).to have_received(:message)` over
-  (i.e. stub `find` to return a specific instance or a stub).
+  `expect(foo).to_receive(:message)`. In general, prefer forms that allow tests
+  to flow sequentially from setup to assertions to teardown.
   <sup>[[link](#have-received)]</sup>
 
 ### Scopes
