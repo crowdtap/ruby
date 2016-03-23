@@ -1093,8 +1093,10 @@ In either case:
 
 * <a name="business-logic"></a>Business logic should be in models and
   services, not controllers or views.<sup>[[link](#business-logic)]</sup>
+
 * <a name="services"></a>Extract service objects to manage complex interactions
   across models.<sup>[[link](#services)]</sup>
+
 * <a name="poros"></a>In general, extract basic ruby object to wrap complex
   logic and keep rails objects at a consistent level of abstraction.([More on
   this][fat-activerecord].)<sup>[[link](#poros)]</sup>
@@ -1103,6 +1105,7 @@ In either case:
 * <a name="bangy-saves"></a>Prefer `save!`, `create!`, and `update_attributes!`
   over the non-bangy versions of those methods unless explicitly handling when
   the save fails.<sup>[[link](#bangy-saves)]</sup>
+
 * <a name="run-validations"></a>Do not skip model validations (with e.g. `inc`
   or `update_attribute`) unless you're solving a measured performance
   bottleneck.<sup>[[link](#run-validations)]</sup>
@@ -1111,22 +1114,30 @@ In either case:
 
 * <a name="integration-tests"></a>Integration test for authentication and correct status
   codes<sup>[[link](#integration-tests)]</sup>
+
 * <a name="controller-tests"></a>Controller test that appropriate instance
   variables are set to the right values<sup>[[link](#controller-tests)]</sup>
+
 * <a name="view-tests"></a>View test that a view given the right instance
   variables does the right thing<sup>[[link](#view-tests)]</sup>
+
 * <a name="model-tests"></a>Unit test all public methods.<sup>[[link](#model-tests)]</sup>
+
 * <a name="stub-tested-public methods"></a>If a public method on a model uses other public
   methods owned by the same model, stub the other methods to avoid double
   testing.<sup>[[link](#stub-tested-public-methods)]</sup>
+
 * <a name="coverage"></a>Models should have 100% test coverage just from running
   model specs.<sup>[[link](#stub-tested-public-methods)]</sup>
+
 * <a name="level-of-abstraction"></a>Assertions in each example should be at the
   same level of abstraction. If this is challenging, it's likely an object
   should be extracted to handle one of those abstraction layers.
   <sup>[[link](#level-of-abstraction)]</sup>
+
 * <a name="no-private-method-specs"></a>Do not directly test private methods.
   <sup>[[link](#no-private-method-specs)]</sup>
+
 * <a name="avoid-stubbing-db"></a>Do not stub database interactions. They are
   not tested elsewhere.<sup>[[link](#avoid-stubbing-db)]</sup>
   ```ruby
@@ -1150,11 +1161,13 @@ In either case:
 * <a name="no-any-instance"></a>Avoid stubbing on `any_instance`. Prefer dependency injection
   (i.e. stub `find` to return a specific instance or a stub).
   <sup>[[link](#no-any-instance)]</sup>
+
 * <a name="have-received"></a>Prefer `expect(foo).to have_received(:message)` over
   (i.e. stub `find` to return a specific instance or a stub).
   <sup>[[link](#have-received)]</sup>
 
 ### Scopes
+
 * <a name="scope-lambda"></a>When defining ActiveRecord model scopes, wrap the
     relation in a `lambda`.  A naked relation forces a database connection to be
     established at class load time (instance startup).
@@ -1169,6 +1182,7 @@ In either case:
     ```
 
 ### Dates
+
 * <a name="dates"></a>When trying to set the current date or time, make use
     .current instead of .today. Date.today doesn't account for timezones and hence
     can cause issues.
