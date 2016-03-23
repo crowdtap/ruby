@@ -1112,16 +1112,18 @@ In either case:
 
 ### Testing Strategy
 
-* <a name="integration-tests"></a>Integration test for authentication and correct status
-  codes<sup>[[link](#integration-tests)]</sup>
+* <a name="integration-tests"></a>Integration test status codes and responses for the
+  main happy path and sad path for an action.<sup>[[link](#integration-tests)]</sup>
 
-* <a name="controller-tests"></a>Controller test that appropriate instance
-  variables are set to the right values<sup>[[link](#controller-tests)]</sup>
-
-* <a name="view-tests"></a>View test that a view given the right instance
-  variables does the right thing<sup>[[link](#view-tests)]</sup>
+* <a name="controller-tests"></a>Controller test all happy and sad paths. Check
+  that the correct redirects are made or the correct content is rendered.
+  <sup>[[link](#controller-tests)]</sup>
 
 * <a name="model-tests"></a>Unit test all public methods.<sup>[[link](#model-tests)]</sup>
+
+* <a name="avoid-tautological-model-tests"></a>Do not test the existence of
+  fields on models. Instead, test the intended behavior associated with those fields
+  <sup>[[link](#avoid-tautological-model-tests)]</sup>
 
 * <a name="stub-tested-public methods"></a>If a public method on a model uses other public
   methods owned by the same model, stub the other methods to avoid double
@@ -1195,7 +1197,7 @@ In either case:
       ...
     end
 
-    #bad
+    # bad
     now = Time.now
 
     # good
