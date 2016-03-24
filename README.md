@@ -1108,7 +1108,7 @@ In either case:
   ```ruby
   # bad
   class BlogPostService
-    def self.create_with_score
+    def self.create_with_score(blog_post_params)
       BlogPost.create(blog_post_params)
       Score.create(:blog_post => blog_post)
     end
@@ -1116,7 +1116,7 @@ In either case:
 
   # good
   class BlogPostService
-    def self.create_with_score(blog_post_params
+    def self.create_with_score(blog_post_params)
       blog_post = BlogPost.create!(blog_post_params)
       Score.create!(:blog_post => blog_post)
     end
@@ -1128,7 +1128,7 @@ In either case:
       @blog_post = BlogPost.new(blog_post_params)
 
       if blog_post.save
-        redirect_to blog_post
+        redirect_to @blog_post
       else
         render :new, :status => :unprocessable_entity
       end
