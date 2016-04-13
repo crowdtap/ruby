@@ -316,15 +316,15 @@ Thus when you create a TODO, it is almost always your name that is given.
     ```
 
 * <a name="multiline-method-chains"></a>For multiline method chains, indent all
-    lines after the first one level. Put the dot on the line preceding
+    lines after the first one level. Put the dot on the second line before the
     subsequent method call.<sup>[[link](#multiline-method-chains)]</sup>
 
     ```ruby
     # okay
-    cars.
-      select(&:four_wheel_drive?).
-      map(&:max_speed).
-      sort
+    cars
+      .select(&:four_wheel_drive?)
+      .map(&:max_speed)
+      .sort
     ```
 
 * <a name="no-args-parens"></a>**Omit parentheses** for a method call if the
