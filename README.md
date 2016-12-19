@@ -1122,9 +1122,7 @@ In either case:
         end
       end
     end
-    ```
 
-    ```
     # good
     class V2::ShareController < BaseController
       def create
