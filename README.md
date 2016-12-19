@@ -1096,6 +1096,9 @@ In either case:
   and rendering a response in the appropriate format.<sup>[[link](#controllers)]</sup>
 
     1. Performing operations on records as the result of a request is business logic and belongs outside of the controller.
+    2. Preparing a view model for the response is presentation logic and belongs outside of the controller.
+    3. When adding a controller action, try to abstract away as much complexity as possible to other entities, such as services and helper object.
+      1. This makes it easier to test your business logic and write reusable code.
 
     ```ruby
     # bad
