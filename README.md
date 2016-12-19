@@ -1091,6 +1091,54 @@ In either case:
 
 ### Separation of Concerns
 
+* <a name="controllers"></a>The responsibility of a controller is to
+  accept HTTP requests and respond with data.<sup>[[link](#controllers)]</sup>
+
+    1. Performing operations on records as the result of a request is business logic and belongs outside of the controller.
+
+    ```ruby
+    # bad
+    class V2::ShareController < BaseController
+      def create
+        participation = Participation.where(:brand_action_id => params[:id], :member_id => current_member.id).first
+
+        social_network_share = SocialNetworkShare.where(
+                                 :brand_action_id  => params[:id],
+                                 :member           => current_member,
+                                 :participation    => participation
+                               ).first
+        social_network_share ||= SocialNetworkShare.initialize_from(participation)
+        social_network_share.messages.merge!(params[:share_media_platforms])
+
+        if social_network_share.save
+          params[:share_media_platforms].each do |key, value|
+            participation.share_media_platforms["#{key}"] = value
+          end
+          participation.save
+          head :created
+        else
+          render :json   => {"errors" => social_network_share.errors.messages},
+                 :status => :unprocessable_entity
+        end
+      end
+    end
+    ```
+
+    ```
+    # good
+    class V2::ShareController < BaseController
+      def create
+        service = ShareService.new(params)
+
+        if service.create
+          render :json => service.share, :status => :created
+        else
+          render :json => service.errors, :status => :unprocessable_entity
+        end
+      end
+    end
+    ```
+
 * <a name="business-logic"></a>Business logic should be in models and
   services, not controllers or views.<sup>[[link](#business-logic)]</sup>
 
