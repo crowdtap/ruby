@@ -1091,8 +1091,9 @@ In either case:
 
 ### Separation of Concerns
 
-* <a name="controllers"></a>The responsibility of a controller is to
-  accept HTTP requests and respond with data.<sup>[[link](#controllers)]</sup>
+* <a name="controllers"></a>The responsibilities of a controller include
+  accepting HTTP requests, handling authentication and authorization,
+  and rendering a response in the appropriate format.<sup>[[link](#controllers)]</sup>
 
     1. Performing operations on records as the result of a request is business logic and belongs outside of the controller.
 
