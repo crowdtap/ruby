@@ -1140,6 +1140,7 @@ In either case:
         end
       end
     end
+    ```
 
     4. The service interface should:
       1. Allow you to instantiate the service with a set of hash options
