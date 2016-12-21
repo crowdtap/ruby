@@ -1097,7 +1097,7 @@ In either case:
 
     1. Performing operations on records as the result of a request is business logic and belongs outside of the controller.
     2. Preparing a view model for the response is presentation logic and belongs outside of the controller.
-    3. When making changes to a controller, try to extract as much complexity as possible into other entities, such as services, helper objects, and models.
+    3. When making changes to a controller, extract as much complexity as possible into other entities, such as services, helper objects, and models.
       1. This makes it easier to separate and test various types of logic and write reusable code.
 
     ```ruby
@@ -1130,13 +1130,53 @@ In either case:
     # good
     class V2::ShareController < BaseController
       def create
-        service = ShareService.new(params)
+        service = CreateShareService.new(params)
 
-        if service.create
-          render :json => service.share, :status => :created
+        if service.run
+          @share = service.share
+          render :show, :status => :created
         else
           render :json => service.errors, :status => :unprocessable_entity
         end
+      end
+    end
+
+    4. The service interface should:
+      1. Allow you to instantiate the service with a set of hash options
+      2. Expose a single instance method as the entry point
+      3. Expose a read-only attribute to access encountered errors
+      4. Expose a read-only attribute to access the result of a successful run
+        1. Ex: If making a create endpoint, this can be the new record
+
+    ```ruby
+    # example service
+    class CreateShareService
+      attr_reader :errors, :share
+
+      def initialize(params)
+        self.errors = []
+
+        @participation_id = params[:participation_id]
+        ...
+      end
+
+      def run
+        return false unless valid?
+
+        create_share
+
+        true
+      end
+
+      private
+
+      def create_share
+        share = SocialNetworkShare.create!(...)
+      end
+
+      def valid?
+        errors.push(error) if ...
+        errors.empty?
       end
     end
     ```
