@@ -1163,10 +1163,11 @@ In either case:
 
       def run
         return false unless valid?
-
         create_share
-
         true
+      rescue Mongoid::Errors::Validations => error
+        errors.push(...)
+        false
       end
 
       private
