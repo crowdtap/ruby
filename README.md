@@ -1091,6 +1091,98 @@ In either case:
 
 ### Separation of Concerns
 
+* <a name="controllers"></a>The responsibilities of a controller include
+  accepting HTTP requests, handling authentication and authorization,
+  and rendering a response in the appropriate format.<sup>[[link](#controllers)]</sup>
+
+    1. Performing operations on records as the result of a request is business logic and belongs outside of the controller.
+    2. Preparing a view model for the response is presentation logic and belongs outside of the controller.
+    3. When making changes to a controller, extract as much complexity as possible into other entities, such as services, helper objects, and models.
+      1. This makes it easier to separate and test various types of logic and write reusable code.
+
+    ```ruby
+    # bad
+    class V2::ShareController < BaseController
+      def create
+        participation = Participation.where(:brand_action_id => params[:id], :member_id => current_member.id).first
+
+        social_network_share = SocialNetworkShare.where(
+                                 :brand_action_id  => params[:id],
+                                 :member           => current_member,
+                                 :participation    => participation
+                               ).first
+        social_network_share ||= SocialNetworkShare.initialize_from(participation)
+        social_network_share.messages.merge!(params[:share_media_platforms])
+
+        if social_network_share.save
+          params[:share_media_platforms].each do |key, value|
+            participation.share_media_platforms["#{key}"] = value
+          end
+          participation.save
+          head :created
+        else
+          render :json   => {"errors" => social_network_share.errors.messages},
+                 :status => :unprocessable_entity
+        end
+      end
+    end
+
+    # good
+    class V2::ShareController < BaseController
+      def create
+        service = CreateShareService.new(params)
+
+        if service.run
+          @share = service.share
+          render :show, :status => :created
+        else
+          render :json => service.errors, :status => :unprocessable_entity
+        end
+      end
+    end
+    ```
+
+    4. The service interface should:
+      1. Allow you to instantiate the service with a set of hash options
+      2. Expose a single instance method as the entry point
+      3. Expose a read-only attribute to access encountered errors
+      4. Expose a read-only attribute to access the result of a successful run
+        1. Ex: If making a create endpoint, this can be the new record
+
+    ```ruby
+    # example service
+    class CreateShareService
+      attr_reader :errors, :share
+
+      def initialize(params)
+        self.errors = []
+
+        @participation_id = params[:participation_id]
+        ...
+      end
+
+      def run
+        return false unless valid?
+        create_share
+        true
+      rescue Mongoid::Errors::Validations => error
+        errors.push(...)
+        false
+      end
+
+      private
+
+      def create_share
+        share = SocialNetworkShare.create!(...)
+      end
+
+      def valid?
+        errors.push(error) if ...
+        errors.empty?
+      end
+    end
+    ```
+
 * <a name="business-logic"></a>Business logic should be in models and
   services, not controllers or views.<sup>[[link](#business-logic)]</sup>
 
