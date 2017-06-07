@@ -13,80 +13,80 @@ AllCops:
 
 # Styles
 # Whitespace / Indentation
-Style/AlignArray:
+Layout/AlignArray:
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
-Style/AlignHash:
+Layout/AlignHash:
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_first_parameter
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
-Style/CaseIndentation:
-  IndentWhenRelativeTo: case
+Layout/CaseIndentation:
+  EnforcedStyle: case
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
-Style/IndentationWidth:
+Layout/IndentationWidth:
   Width: 2
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
-Style/Tab:
+Layout/Tab:
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
 # Whitespace / Inline
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: leading
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceAroundBlockParameters:
+Layout/SpaceAroundBlockParameters:
   EnforcedStyleInsidePipes: no_space
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceAroundEqualsInParameterDefault:
+Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: space
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceAroundOperators:
+Layout/SpaceAroundOperators:
   AllowForAlignment: true
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceBeforeBlockBraces:
+Layout/SpaceBeforeBlockBraces:
   EnforcedStyle: space
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceInsideBlockBraces:
+Layout/SpaceInsideBlockBraces:
   EnforcedStyle: space
   EnforcedStyleForEmptyBraces: no_space
   SpaceBeforeBlockParameters: true
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceInsideBrackets:
+Layout/SpaceInsideBrackets:
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
   EnforcedStyleForEmptyBraces: no_space
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/SpaceInsideParens:
+Layout/SpaceInsideParens:
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/TrailingBlankLines:
+Layout/TrailingBlankLines:
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
-Style/TrailingWhitespace:
+Layout/TrailingWhitespace:
   StyleGuide: "https://github.com/crowdtap/ruby#inline"
 
 # Whitespace / Newlines
-Style/MultilineBlockLayout:
+Layout/MultilineBlockLayout:
   StyleGuide: "https://github.com/crowdtap/ruby#newlines"
 
-Style/EmptyLineBetweenDefs:
+Layout/EmptyLineBetweenDefs:
   AllowAdjacentOneLineDefs: true
   StyleGuide: "https://github.com/crowdtap/ruby#newlines"
 
@@ -101,10 +101,10 @@ Style/MethodDefParentheses:
   StyleGuide: "https://github.com/crowdtap/ruby#method-definitions"
 
 # Methods / Calls
-Style/MethodCallParentheses:
+Style/MethodCallWithoutArgsParentheses:
   StyleGuide: "https://github.com/crowdtap/ruby#method-calls"
 
-Style/SpaceAfterMethodName:
+Layout/SpaceAfterMethodName:
   StyleGuide: "https://github.com/crowdtap/ruby#method-calls"
 
 # Conditional Expressions / Keywords
@@ -174,14 +174,14 @@ Style/VariableName:
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
 # Classes
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: indent
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
 Style/ClassVars:
   StyleGuide: "https://github.com/crowdtap/ruby#classes"
 
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   StyleGuide: "https://github.com/crowdtap/ruby#classes"
 
 # Exceptions
@@ -211,7 +211,7 @@ Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
   StyleGuide: "https://github.com/crowdtap/ruby#collections"
 
-Style/MultilineHashBraceLayout:
+Layout/MultilineHashBraceLayout:
   StyleGuide: "https://github.com/crowdtap/ruby#collections"
 
 # Rails
@@ -316,7 +316,7 @@ Lint/EndInMethod:
 Lint/EnsureReturn:
   Enabled: true
 
-Lint/Eval:
+Security/Eval:
   Enabled: true
 
 Lint/FloatOutOfRange:
