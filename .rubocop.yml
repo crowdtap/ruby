@@ -24,7 +24,7 @@ Layout/AlignParameters:
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
 Layout/CaseIndentation:
-  IndentWhenRelativeTo: case
+  EnforcedStyle: case
   StyleGuide: "https://github.com/crowdtap/ruby#indentation"
 
 Layout/IndentationWidth:
@@ -96,44 +96,44 @@ Metrics/LineLength:
   StyleGuide: "https://github.com/crowdtap/ruby#line-length"
 
 # Methods / Definitions
-Layout/MethodDefParentheses:
+Style/MethodDefParentheses:
   EnforcedStyle: require_parentheses
   StyleGuide: "https://github.com/crowdtap/ruby#method-definitions"
 
 # Methods / Calls
-Layout/MethodCallParentheses:
+Style/MethodCallWithoutArgsParentheses:
   StyleGuide: "https://github.com/crowdtap/ruby#method-calls"
 
 Layout/SpaceAfterMethodName:
   StyleGuide: "https://github.com/crowdtap/ruby#method-calls"
 
 # Conditional Expressions / Keywords
-Layout/AndOr:
+Style/AndOr:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
-Layout/IfUnlessModifier:
+Style/IfUnlessModifier:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
-Layout/MultilineIfThen:
+Style/MultilineIfThen:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
-Layout/MultilineTernaryOperator:
+Style/MultilineTernaryOperator:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
-Layout/Not:
+Style/Not:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
-Layout/ParenthesesAroundCondition:
+Style/ParenthesesAroundCondition:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
-Layout/UnlessElse:
+Style/UnlessElse:
   StyleGuide: "https://github.com/crowdtap/ruby#conditional-keywords"
 
 # Conditional Expressions / Ternary Operator
-Layout/MultilineTernaryOperator:
+Style/MultilineTernaryOperator:
   StyleGuide: "https://github.com/crowdtap/ruby#ternary-operator"
 
-Layout/OneLineConditional:
+Style/OneLineConditional:
   StyleGuide: "https://github.com/crowdtap/ruby#ternary-operator"
 
 # Syntax
@@ -143,33 +143,33 @@ Lint/UnusedBlockArgument:
 Lint/UnusedMethodArgument:
   StyleGuide: "https://github.com/crowdtap/ruby#syntax"
 
-Layout/BlockDelimiters:
+Style/BlockDelimiters:
   StyleGuide: "https://github.com/crowdtap/ruby#syntax"
 
-Layout/For:
+Style/For:
   StyleGuide: "https://github.com/crowdtap/ruby#syntax"
 
-Layout/RedundantReturn:
+Style/RedundantReturn:
   StyleGuide: "https://github.com/crowdtap/ruby#syntax"
 
-Layout/RedundantSelf:
+Style/RedundantSelf:
   StyleGuide: "https://github.com/crowdtap/ruby#syntax"
 
 # Naming
 Lint/UnderscorePrefixedVariableName:
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
-Layout/ClassAndModuleCamelCase:
+Style/ClassAndModuleCamelCase:
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
-Layout/ConstantName:
+Style/ConstantName:
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
-Layout/MethodName:
+Style/MethodName:
   EnforcedStyle: snake_case
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
-Layout/VariableName:
+Style/VariableName:
   EnforcedStyle: snake_case
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
@@ -178,7 +178,7 @@ Layout/AccessModifierIndentation:
   EnforcedStyle: indent
   StyleGuide: "https://github.com/crowdtap/ruby#naming"
 
-Layout/ClassVars:
+Style/ClassVars:
   StyleGuide: "https://github.com/crowdtap/ruby#classes"
 
 Layout/IndentationConsistency:
@@ -192,7 +192,7 @@ Lint/RescueException:
   StyleGuide: "https://github.com/crowdtap/ruby#exceptions"
 
 # Collections
-Layout/CollectionMethods:
+Style/CollectionMethods:
   PreferredMethods:
     collect!: 'map!'
     collect: 'map'
@@ -203,11 +203,11 @@ Layout/CollectionMethods:
     length: 'size'
   StyleGuide: "https://github.com/crowdtap/ruby#collections"
 
-Layout/HashSyntax:
+Style/HashSyntax:
   EnforcedStyle: hash_rockets
   StyleGuide: "https://github.com/crowdtap/ruby#collections"
 
-Layout/TrailingCommaInLiteral:
+Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
   StyleGuide: "https://github.com/crowdtap/ruby#collections"
 
@@ -316,7 +316,7 @@ Lint/EndInMethod:
 Lint/EnsureReturn:
   Enabled: true
 
-Lint/Eval:
+Security/Eval:
   Enabled: true
 
 Lint/FloatOutOfRange:
