@@ -315,6 +315,18 @@ Thus when you create a TODO, it is almost always your name that is given.
     f(3 + 2) + 1
     ```
 
+* <a name="multiline-method-chains"></a>For multiline method chains, indent all
+    lines after the first one level. Put the dot on the second line before the
+    subsequent method call.<sup>[[link](#multiline-method-chains)]</sup>
+
+    ```ruby
+    # okay
+    cars
+      .select(&:four_wheel_drive?)
+      .map(&:max_speed)
+      .sort
+    ```
+
 * <a name="no-args-parens"></a>**Omit parentheses** for a method call if the
     method accepts no arguments.<sup>[[link](#no-args-parens)]</sup>
 
